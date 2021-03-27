@@ -3,6 +3,7 @@ package com.example.covid_19tracker
 import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import androidx.annotation.Nullable
 import com.bumptech.glide.Glide
 
 
-class MyAdapter(mCtx : Context, val countryModelsList: List<CountryModel>) : ArrayAdapter<CountryModel>(mCtx, R.layout.list_custom_item, countryModelsList) {
+class MyAdapter(mCtx : Context, var countryModelsList: List<CountryModel>) : ArrayAdapter<CountryModel>(mCtx, R.layout.list_custom_item, countryModelsList) {
     private var countryModelsListFiltered: List<CountryModel>
 
     override fun getView(position: Int, @Nullable convertView: View?, parent: ViewGroup): View {
@@ -59,7 +60,7 @@ class MyAdapter(mCtx : Context, val countryModelsList: List<CountryModel>) : Arr
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults) {
                 countryModelsListFiltered = results.values as List<CountryModel>
-//                countryModelsList = results.values as List<CountryModel?>
+                countryModelsList = results.values as List<CountryModel>
                 notifyDataSetChanged()
             }
         }

@@ -42,10 +42,9 @@ class AffectedCountries : AppCompatActivity() {
         fetchData()
 
         binding.listView.onItemClickListener = OnItemClickListener { parent, view, position, id ->
-            Log.i("error", view.toString())
+            Log.i("error", position.toString())
             val intent = Intent(this, CountryDetails::class.java)
-            val model = countryModelsList[position]
-            val bundle = Bundle()
+            val model = myCustomAdapter.countryModelsList[position]
             intent.putExtra("model", model)
             startActivity(intent)
         }
